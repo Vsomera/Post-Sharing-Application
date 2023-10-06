@@ -1,0 +1,2 @@
+# Dockerfile for Mongo DB Service
+FROM mongo:4.4
