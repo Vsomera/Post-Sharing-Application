@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express"
+import express from "express"
 import userController from "../controllers/userController"
 const router = express.Router()
 
@@ -12,11 +12,7 @@ router.post("/", userController.registerUser)
 // @ route  POST /api/users/login
 // @ access Public
 
-router.post("/login", (req, res) => {
-    res.status(200).json({
-        message: "login user"
-    })
-})
+router.post("/login", userController.loginUser)
 
 // @ desc   User Info
 // @ route  GET /api/users/me
