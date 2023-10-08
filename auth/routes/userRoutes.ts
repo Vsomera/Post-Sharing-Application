@@ -1,5 +1,6 @@
-import express from "express"
+import express, {Request, Response} from "express"
 import userController from "../controllers/userController"
+import authMiddleware from "../middleware/authMiddleware"
 const router = express.Router()
 
 // @ desc   Register User
@@ -18,9 +19,10 @@ router.post("/login", userController.loginUser)
 // @ route  GET /api/users/me
 // @ access Private
 
-router.get("/", (req, res) => {
+router.get("/", authMiddleware.authenticateToken, (req : Request, res : Response) => {
     res.status(200).json({
-        message: "fetch user data"
+        // @ts-ignore
+        user : req.user
     })
 })
 
