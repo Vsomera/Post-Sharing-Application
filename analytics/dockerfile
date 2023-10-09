@@ -1,4 +1,7 @@
-# Dockerfile for MySql DB Service
-FROM mysql:5.7
-ENV MYSQL_ROOT_PASSWORD root
-COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
+FROM mysql:latest
+
+# sets the root user password
+ENV MYSQL_ROOT_PASSWORD=root123!
+
+# runs the given sql file in analytics folder
+COPY ./database_analytics.sql /docker-entrypoint-initdb.d/
