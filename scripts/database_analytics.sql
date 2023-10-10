@@ -8,7 +8,8 @@ USE analytics;
 CREATE TABLE IF NOT EXISTS posts (
     postID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userID VARCHAR(250) NOT NULL,
-    postText VARCHAR(250) NOT NULL
+    postText VARCHAR(250) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create the 'user_analytics' table
@@ -17,3 +18,4 @@ CREATE TABLE IF NOT EXISTS user_analytics (
     postCount INT NOT NULL,
     online BOOLEAN
 );
+
