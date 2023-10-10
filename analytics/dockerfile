@@ -1,7 +1,0 @@
-FROM mysql:latest
-
-# sets the root user password
-ENV MYSQL_ROOT_PASSWORD=root123!
-
-# runs the given sql file in analytics folder
-COPY ./database_analytics.sql /docker-entrypoint-initdb.d/
