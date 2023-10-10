@@ -12,7 +12,7 @@ class UserAnalytics(Base):
     postCount = Column(Integer, nullable=False)
     online = Column(Boolean, nullable=False)
 
-    def __init__(self, userID, postCount, online, lastActivity=None):
+    def __init__(self, userID, postCount, online):
         ''' Initializes user analytics data '''
         self.userID = userID
         self.postCount = postCount
