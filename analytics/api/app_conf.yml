@@ -1,0 +1,7 @@
+version: 1 
+datastore: 
+  user: root 
+  password:  Password123!
+  hostname: localhost
+  port: 7070
+  db: analytics

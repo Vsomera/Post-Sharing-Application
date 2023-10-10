@@ -1,3 +1,18 @@
-version: '3'
+version: '1'
+
 services:
-  # add when application is finished
+  db: 
+    # creates the database
+    image: "mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123!
+    volumes:
+      - db-data:/foo
+      - ./scripts:/docker-entrypoint-initdb.d # creates database and tables from 'database_analytics.sql'
+    ports:
+      - "7070:3306" # port forwards db on localhost:7070
+
+# DATABASE TERMINAL ACCESS : mysql -u root -p -h localhost -P 7070
+
+volumes:
+  db-data:
