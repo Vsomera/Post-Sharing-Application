@@ -155,4 +155,4 @@ def deletePost(post_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8080) # runs app in debug mode
+    app.run(host='0.0.0.0', port=8080) # runs app in debug mode
