@@ -6,8 +6,10 @@ from base import Base
 from posts import Posts
 from user_analytics import UserAnalytics
 from flask import request
+from flask_cors import CORS  # Import CORS
 
 app = Flask(__name__) 
+CORS(app)
 
 with open("app_conf.yml", 'r') as f1:
     # imports config filescd
