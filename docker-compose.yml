@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   analytics:
     build: /analytics
     ports:
@@ -9,6 +10,13 @@ services:
       - project_network
     depends_on:
       - mysql_db
+
+  auth:
+    build: /auth
+    ports:
+      - '5050:5050'
+    networks:
+      - project_network
 
   mysql_db: 
     image: "mysql:latest"

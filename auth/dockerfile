@@ -1,2 +1,22 @@
-# Dockerfile for Mongo DB Service
-FROM mongo:4.4
+FROM node:14
+
+# specifies working directoy
+WORKDIR /app
+
+# specifies location of packages
+COPY package*.json ./
+
+# installs dependancies (shell form)
+RUN npm install
+
+# copies source code to image
+COPY . .
+
+ENV PORT=5050
+
+# starts the express application (exec form  )
+CMD ["npm", "start"]
+
+#             local : container
+# docker run -p 5000:8080 <image_id>
+#                 ^ port forwards container(8080) to local(5000)
