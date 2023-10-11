@@ -1,3 +1,39 @@
 version: '3'
+
 services:
-  # add when application is finished
+
+  analytics:
+    build: /analytics
+    ports:
+      - "8080:8080" # port forwards api on localhost:8080
+    networks:
+      - project_network
+    depends_on:
+      - mysql_db
+
+  auth:
+    build: /auth
+    ports:
+      - '5050:5050'
+    networks:
+      - project_network
+
+  mysql_db: 
+    image: "mysql:latest"
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123!
+    volumes:
+      - db-data:/foo
+      - ./scripts:/docker-entrypoint-initdb.d 
+    ports:
+      - "3306" # port forwards db on localhost:7070
+    networks:
+      - project_network
+
+# DATABASE TERMINAL ACCESS : mysql -u root -p -h localhost -P 7070
+
+volumes:
+  db-data:
+
+networks:
+  project_network:

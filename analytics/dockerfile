@@ -1,4 +1,6 @@
-# Dockerfile for MySql DB Service
-FROM mysql:5.7
-ENV MYSQL_ROOT_PASSWORD root
-COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
+FROM python
+RUN pip install --upgrade pip
+RUN pip install pymysql cryptography flask pyyaml sqlalchemy
+WORKDIR /app
+COPY api /app
+CMD ["python3", "app.py"]
