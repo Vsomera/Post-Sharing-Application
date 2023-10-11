@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='enter_data_styles.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Enter Post Data</h2>
+        <form action="/api/add-post" method="post">
+            <input type="text" id="userID" name="userID" placeholder="User ID:" required><br><br>
+            <input type="text" id="title" name="title" placeholder="Title of the post:" required><br><br>
+            <textarea id="postText" name="postText" rows="4" placeholder="Contents of the post:" required></textarea><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

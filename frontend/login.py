@@ -19,6 +19,10 @@ def login():
             return "Invalid credentials, please try again."
     return render_template("login.html")
 
+@app.route("/create-account", methods=["GET"])
+def create_account():
+    return redirect("http://localhost:5000/register")
+
 @app.route("/welcome")
 def welcome():
     return "Welcome, you are logged in!"
