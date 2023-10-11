@@ -66,6 +66,18 @@ def addPost():
         # Commit the session to save the new post
         session.commit()
 
+        # Increment the post count for the user in the user_analytics table
+        user_analytics_data = session.query(UserAnalytics).get(userID)
+        if user_analytics_data:
+            user_analytics_data.postCount += 1
+        else:
+            # Handle the case where the user doesn't exist in user_analytics (e.g., create a new entry)
+            user_analytics_data = UserAnalytics(userID=userID, postCount=1, online=True)
+            session.add(user_analytics_data)
+
+        # commit changes to user analytics
+        session.commit()
+
         session.close()
 
         return jsonify({'message': 'Post added successfully'}), 201
@@ -112,12 +124,23 @@ def deletePost(post_id):
         # Get the post by ID
         post = session.query(Posts).get(post_id)
 
+        data = request.json
+        userID = data.get('userID')
+
         if post:
             # Delete the post
             session.delete(post)
 
             # Commit the session to save the changes
             session.commit()
+
+             # Decrement the post count for the user in the user_analytics table
+            user_analytics_data = session.query(UserAnalytics).get(userID)
+            if user_analytics_data:
+                user_analytics_data.postCount -= 1
+
+                # Commit the session to update user_analytics
+                session.commit()
 
             session.close()
 
