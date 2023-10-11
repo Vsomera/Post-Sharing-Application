@@ -11,15 +11,13 @@ class Posts(Base):
 
     postID = Column(Integer, primary_key=True, autoincrement=True)
     userID = Column(String(250), nullable=False)
-    postText = Column(String(250), nullable=False)
-    postDate = Column(TIMESTAMP, nullable=False, server_default='CURRENT_TIMESTAMP')
+    content = Column(String(250), nullable=False)
     title = Column(String(250), nullable=False)  
-    content = Column(String(1000), nullable=False)  
+    postDate = Column(TIMESTAMP, nullable=False, server_default='CURRENT_TIMESTAMP')
 
-    def __init__(self, userID, postText, content, title):
+    def __init__(self, userID, content, title):
         ''' Initializes a post '''
         self.userID = userID
-        self.postText = postText
         self.title = title
         self.content = content
 
@@ -30,6 +28,5 @@ class Posts(Base):
             'userID': self.userID,
             'title': self.title,
             'content': self.content, 
-            'postText': self.postText,
             'postDate': self.postDate
         }

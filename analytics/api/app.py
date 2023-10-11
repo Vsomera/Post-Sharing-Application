@@ -53,11 +53,12 @@ def addPost():
 
         # Get data from request
         data = request.json
+        userID = data.get('userID')
         title = data.get('title')
         content = data.get('content')
 
         # Create a new post object
-        new_post = Posts(title=title, content=content)
+        new_post = Posts(userID=userID, title=title, content=content)
 
         # Add the new post to the session
         session.add(new_post)
