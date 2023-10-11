@@ -4,6 +4,10 @@ app = Flask(__name__)
 
 users = {"username": "password"} 
 
+@app.route("/", methods=["GET"])
+def home():
+    return redirect(url_for("login"))
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":

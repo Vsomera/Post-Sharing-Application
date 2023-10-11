@@ -13,17 +13,23 @@ class Posts(Base):
     userID = Column(String(250), nullable=False)
     postText = Column(String(250), nullable=False)
     postDate = Column(TIMESTAMP, nullable=False, server_default='CURRENT_TIMESTAMP')
+    title = Column(String(250), nullable=False)  
+    content = Column(String(1000), nullable=False)  
 
-    def __init__(self, userID, postText):
+    def __init__(self, userID, postText, content, title):
         ''' Initializes a post '''
         self.userID = userID
         self.postText = postText
+        self.title = title
+        self.content = content
 
     def to_dict(self):
         ''' Dict representation of a post '''
         return {
             'postID': self.postID,
             'userID': self.userID,
+            'title': self.title,
+            'content': self.content, 
             'postText': self.postText,
             'postDate': self.postDate
         }
