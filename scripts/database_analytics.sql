@@ -12,6 +12,9 @@ CREATE TABLE IF NOT EXISTS posts (
     postDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Add the 'title' column to the 'posts' table
+ALTER TABLE posts ADD COLUMN title VARCHAR(250) NOT NULL;
+
 -- Create the 'user_analytics' table
 CREATE TABLE IF NOT EXISTS user_analytics (
     userID VARCHAR(250) NOT NULL,
