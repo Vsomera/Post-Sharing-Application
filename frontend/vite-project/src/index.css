@@ -72,3 +72,75 @@
 hr {
     border: 1px solid orange;
 }
+
+/* Dashboard Page */
+.dashboard-container {
+    display: flex;
+    min-width: auto;
+    min-height: auto;
+}
+
+.left,
+.mid,
+.right {
+    min-height: 100vh;
+}
+
+/*Left*/
+.left {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.addPost-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    height: 10rem;
+}
+.addPost {
+    text-align: center;
+    padding: 1rem;
+    background-color: orange;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.post-inputs {
+    display: flex;
+    min-height: 3.8rem;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.post-inputs input {
+    border: none;          /* Remove borders */
+    outline: none;         /* Remove outline (focus border) */
+    padding: 0;            /* Remove padding */
+    margin: 0;             /* Remove margin */
+    background: transparent; /* Remove background color */
+    font-size: inherit;    /* Use the default font size */
+    font-family: inherit;  /* Use the default font family */
+    color: inherit;        /* Use the default text color */
+}
+
+.logout {
+    text-align: center;
+    padding: 1rem;
+    background-color: red;
+    border-radius: 1rem;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+/*Middle*/
+.mid {
+    flex-grow: 2;
+    border-right: 1px solid #1F2937;
+    border-left: 1px solid #1F2937;
+}
+/*Right*/
+.right {
+    flex-grow: 1;
+}

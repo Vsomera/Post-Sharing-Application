@@ -43,8 +43,9 @@ export const userInfo = async (accessToken: string) => {
     return userData.data.user
 }
 
-export const logOut = async () => {
-    return
+export const logOut = () => {
+    localStorage.removeItem("user")
+    return null
 }
 
 
