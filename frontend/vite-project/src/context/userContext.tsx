@@ -1,47 +1,62 @@
-import { FC, ReactNode, createContext, useEffect, useState } from "react"
-import { User } from "../interfaces/User"
+import { FC, ReactNode, createContext, useEffect, useState } from "react";
 
 interface UserContextType {
-    user: User | null
-    setUser: (user: User | null) => void;
+  user: { accessToken: string } | null;
+  setUser: (user: { accessToken: string } | null) => void;
 }
 
 interface Props {
-    children: ReactNode
-    initial?: null
+  children: ReactNode;
+  initial?: { accessToken: string } | null;
 }
 
 export const UserContext = createContext<UserContextType>({
-    setUser: () => {}, // dummy function to satisfy the setUser type
-    user: null  // if no user is logged in => null
-})
+  setUser: () => {},
+  user: null,
+});
 
 export const UserContextProvider: FC<Props> = ({ children, initial = null }) => {
-    const [user, setUser] = useState<User | null>(initial)
+  const [user, setUser] = useState<{ accessToken: string } | null>(initial);
 
-    // Load user data from local storage when the component mounts
-    useEffect(() => {
-        const userData = localStorage.getItem("user");
-        if (userData) {
-            const parsedUser = JSON.parse(userData);
-            setUser(parsedUser);
-        }
-    }, [])
+  // Load user data from local storage when the component mounts
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
+    }
+  }, []);
 
-    // save user data to local storage whenever user changes
-    useEffect(() => {
-        if (user) {
-            localStorage.setItem("user", JSON.stringify(user));
-        } else {
-            // remove the user data from local storage (when user logs out)
-            localStorage.removeItem("user");
-        }
-    }, [user])
+  // Listen for changes in the "user" key in local storage
+  useEffect(() => {
+    const storageChangeHandler = (event: StorageEvent) => {
+      if (event.key === "user" && event.newValue) {
+        const parsedUser = JSON.parse(event.newValue);
+        setUser(parsedUser);
+      }
+    };
 
-    return (
-        <UserContext.Provider value={{ user, setUser }}>
-            {children}
-        </UserContext.Provider>
-    )
+    window.addEventListener("storage", storageChangeHandler);
 
-}
+    return () => {
+      // Clean up the event listener when the component unmounts
+      window.removeEventListener("storage", storageChangeHandler);
+    };
+  }, [setUser]);
+
+  // Save user data to local storage whenever user changes
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      // Remove the user data from local storage when the user logs out
+      localStorage.removeItem("user");
+    }
+  }, [user]);
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+};

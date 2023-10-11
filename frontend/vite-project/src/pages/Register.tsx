@@ -1,10 +1,17 @@
 import { MdOutlineNavigateNext } from 'react-icons/md'
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
+import { useNavigate } from 'react-router-dom'
+import { registerUser } from '../services/authService'
+import { toast } from "react-toastify"
 
 import { motion } from "framer-motion"
+import { UserContext } from '../context/userContext'
 
 
 const Register = () => {
+
+    const navigate = useNavigate()
+    const { user } = useContext(UserContext)
 
     const [toggleSubmit, setSubmit] = useState(false) // shows submit button if true
     const [animateSubmit, setAniSubmit] = useState(false) // animates submit btn
@@ -15,6 +22,15 @@ const Register = () => {
     const [confPassword, setConfPassword] = useState("")
 
     useEffect(() => {
+        // checks if user is logged in
+        if (user?.accessToken) {
+            navigate("/")
+        }
+    }, [user, navigate])
+
+
+
+    useEffect(() => {
         if (username && email && password && confPassword !== "") {
             setSubmit(true)
         } else {
@@ -22,6 +38,21 @@ const Register = () => {
         }
     }, [username, email, password, confPassword])
 
+    const handleRegister = async () => {
+        // registers a new user into the database
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const newUser: any = await registerUser(username, email, password)
+            console.log(newUser)
+            if (newUser == 201) {
+                return toast.success("Successfully Registered : Please Log In")
+            } else {
+                return toast.error(`Could not register user : ${newUser.response.data.error}`)
+            }
+        } catch (err) {
+            toast.error("Could not register User")
+        }
+    }
 
     return (
         <>
@@ -82,6 +113,7 @@ const Register = () => {
                             <motion.p
                                 onMouseEnter={() => setAniSubmit(true)}
                                 onMouseLeave={() => setAniSubmit(false)}
+                                onClick={() => { handleRegister() }}
                                 initial={{
                                     opacity: toggleSubmit ? 0 : 1,
                                     y: 85
@@ -106,7 +138,7 @@ const Register = () => {
 
                                 <motion.div
                                     animate={{ x: animateSubmit ? 5 : 0 }}
-                                    // green arrow after sign-in
+                                // green arrow after sign-in
                                 > <MdOutlineNavigateNext className="icon" />
                                 </motion.div>
 
@@ -119,7 +151,7 @@ const Register = () => {
                     <div className="auth-container">
 
                         <motion.div
-                            animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8 , 1], x: [80, 0] }}
+                            animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1], x: [80, 0] }}
                             transition={{ duration: 1, delay: 0.6 }}
                             className="auth-input">
                             <input
@@ -131,7 +163,7 @@ const Register = () => {
                         </motion.div>
 
                         <motion.div
-                            animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8 , 1], x: [80, 0] }}
+                            animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1], x: [80, 0] }}
                             transition={{ duration: 1, delay: 0.7 }}
                             className="auth-input">
                             <input
@@ -143,7 +175,7 @@ const Register = () => {
                         </motion.div>
 
                         <motion.div
-                            animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8 , 1], x: [80, 0] }}
+                            animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1], x: [80, 0] }}
                             transition={{ duration: 1, delay: 0.8 }}
                             className="auth-input" >
                             <input
@@ -155,7 +187,7 @@ const Register = () => {
                         </motion.div>
 
                         <motion.div
-                            animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8 , 1], x: [80, 0] }}
+                            animate={{ opacity: [0, 0.2, 0.4, 0.6, 0.8, 1], x: [80, 0] }}
                             transition={{ duration: 1, delay: 0.9 }}
                             className="auth-input" >
                             <input
