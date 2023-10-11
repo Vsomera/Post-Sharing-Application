@@ -2,24 +2,23 @@ version: '3'
 
 services:
   analytics:
-    depends_on:
-      - db
     build: /analytics
     ports:
       - "8080:8080" # port forwards api on localhost:8080
     networks:
       - project_network
+    depends_on:
+      - mysql_db
 
-  db: 
-    # creates the database
+  mysql_db: 
     image: "mysql:latest"
     environment:
       MYSQL_ROOT_PASSWORD: Password123!
     volumes:
       - db-data:/foo
-      - ./scripts:/docker-entrypoint-initdb.d # creates database and tables from 'database_analytics.sql'
+      - ./scripts:/docker-entrypoint-initdb.d 
     ports:
-      - "7070:3306" # port forwards db on localhost:7070
+      - "3306" # port forwards db on localhost:7070
     networks:
       - project_network
 
