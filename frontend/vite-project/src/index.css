@@ -1,146 +1,166 @@
 /*Register Page*/
 .registration {
-    top: 0;
-    bottom: 0;
-    position: absolute;
-    display: flex;
-    min-height: 100vh;
-    min-width: 100vw;
-    align-items: center;
-    justify-content: center;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  min-height: 100vh;
+  min-width: 100vw;
+  align-items: center;
+  justify-content: center;
 }
 
 .register-container {
-    min-height: 15rem;
-    min-width: 45rem;
-    display: flex;
-    justify-content: space-between;
+  min-height: 15rem;
+  min-width: 45rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .register-container .auth-title {
-    display: flex;
-    align-items: end;  
-    border-right: 1px solid orange;
-    padding: 1.5rem;
+  display: flex;
+  align-items: end;
+  border-right: 1px solid orange;
+  padding: 1.5rem;
 }
 
 .register-container .auth-title h1 {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .register-container .auth-title p {
-    position: absolute;
-    display: flex;
-    cursor: pointer;
-    display: flex;
+  position: absolute;
+  display: flex;
+  cursor: pointer;
+  display: flex;
 }
 
 /*Login Page*/
 .login-container {
-    min-height: 12rem;
-    min-width: 37rem;
-    margin-left: 10rem;
-    display: flex;
-    justify-content: space-between;
+  min-height: 12rem;
+  min-width: 37rem;
+  margin-left: 10rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .login-container .auth-title {
-    display: flex;
-    align-items: end;
-    padding: 1.5rem;
+  display: flex;
+  align-items: end;
+  padding: 1.5rem;
 }
 
 .login-container .auth-title h1 {
-    width: 100%;
-    display: flex;
-    font-size: 3.5rem;
+  width: 100%;
+  display: flex;
+  font-size: 3.5rem;
 }
 
 .login-container .auth-title p {
-    position: absolute;
-    display: flex;
-    cursor: pointer;
-    display: flex;
+  position: absolute;
+  display: flex;
+  cursor: pointer;
+  display: flex;
 }
 
 .login-container .auth-container {
-    margin: auto;
-    height: 8.5rem;
+  margin: auto;
+  height: 8.5rem;
 }
 
 hr {
-    border: 1px solid orange;
+  border: 1px solid orange;
 }
 
 /* Dashboard Page */
 .dashboard-container {
-    display: flex;
-    min-width: auto;
-    min-height: auto;
+  display: flex;
+  min-width: auto;
+  min-height: auto;
 }
 
 .left,
 .mid,
 .right {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 /*Left*/
 .left {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .addPost-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1rem;
-    height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  height: 10rem;
 }
 .addPost {
-    text-align: center;
-    padding: 1rem;
-    background-color: orange;
-    border-radius: 1rem;
-    cursor: pointer;
+  text-align: center;
+  padding: 1rem;
+  background-color: orange;
+  border-radius: 1rem;
+  cursor: pointer;
 }
 .post-inputs {
-    display: flex;
-    min-height: 3.8rem;
-    justify-content: space-between;
-    flex-direction: column;
+  display: flex;
+  min-height: 3.8rem;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .post-inputs input {
-    border: none;          /* Remove borders */
-    outline: none;         /* Remove outline (focus border) */
-    padding: 0;            /* Remove padding */
-    margin: 0;             /* Remove margin */
-    background: transparent; /* Remove background color */
-    font-size: inherit;    /* Use the default font size */
-    font-family: inherit;  /* Use the default font family */
-    color: inherit;        /* Use the default text color */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline (focus border) */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  background: transparent; /* Remove background color */
+  font-size: inherit; /* Use the default font size */
+  font-family: inherit; /* Use the default font family */
+  color: inherit; /* Use the default text color */
 }
 
 .logout {
-    text-align: center;
-    padding: 1rem;
-    background-color: red;
-    border-radius: 1rem;
-    margin: 1rem;
-    cursor: pointer;
+  text-align: center;
+  padding: 1rem;
+  background-color: red;
+  border-radius: 1rem;
+  margin: 1rem;
+  cursor: pointer;
 }
 
 /*Middle*/
 .mid {
-    flex-grow: 2;
-    border-right: 1px solid #1F2937;
-    border-left: 1px solid #1F2937;
+  flex-grow: 2;
+  border-right: 1px solid #1f2937;
+  border-left: 1px solid #1f2937;
+  overflow-y: scroll;
+  height: 100vh;
 }
+.post {
+  margin: 1rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #1f2937;
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937; /* Set the background color of the scrollbar handle */
+  border-radius: 6px; /* Set the handle border-radius */
+}
+
 /*Right*/
 .right {
-    flex-grow: 1;
+  flex-grow: 1;
+  padding: 1rem;
 }
+

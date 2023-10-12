@@ -92,7 +92,7 @@ const Login = () => {
                                     y: 80
                                 }}
                                 animate={{
-                                    x: toggleSubmit ? [0, 240] : [240, 0],
+                                    x: toggleSubmit ? [0, 245] : [245, 0],
                                     opacity: toggleSubmit ? 1 : 0
                                 }}
                                 transition={{

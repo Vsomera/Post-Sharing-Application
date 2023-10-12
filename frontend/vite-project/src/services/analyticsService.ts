@@ -22,3 +22,16 @@ export const addPostDB = async (userToken: string, title: string, content: strin
         console.log(err)
     }
 }
+
+export const getAnalytics = async (userToken : string) => {
+    try {
+        const reqData = {
+            userID : userToken
+        }
+        const analytics = await axios.post('http://localhost:8080/api/user-statistics', reqData)
+        return analytics
+
+    } catch (err) {
+        console.log(err)
+    }
+}

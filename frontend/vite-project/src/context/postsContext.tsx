@@ -48,12 +48,8 @@ interface Post {
         }
       };
   
-      fetchPosts(); // Call the function to fetch posts when the component mounts
+      fetchPosts(); 
   
-      // You can set up a timer or other triggers to periodically fetch posts
-      // to keep the posts data up-to-date.
-  
-      // Cleanup: You can return a cleanup function if necessary
     }, []);
   
     return (

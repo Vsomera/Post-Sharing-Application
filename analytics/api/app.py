@@ -156,7 +156,7 @@ def deletePost(post_id):
     
 
 ''' Get User Analytics Data '''
-@app.route("/api/user-statistics", methods=['GET'])
+@app.route("/api/user-statistics", methods=['POST'])
 def getUserStatistics():
     try:
         session = DB_SESSION()
