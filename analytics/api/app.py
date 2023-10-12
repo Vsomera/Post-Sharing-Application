@@ -6,8 +6,10 @@ from base import Base
 from posts import Posts
 from user_analytics import UserAnalytics
 from flask import request
+from flask_cors import CORS  # Import CORS
 
 app = Flask(__name__) 
+CORS(app)
 
 with open("app_conf.yml", 'r') as f1:
     # imports config filescd
@@ -151,8 +153,76 @@ def deletePost(post_id):
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
 
+''' Get User Analytics Data '''
+@app.route("/api/user-statistics", methods=['POST'])
+def getUserStatistics():
+    try:
+        session = DB_SESSION()
 
+        data = request.json
+        userID = data.get('userID')
 
+        # user analytics data
+        user_analytics_data = session.query(UserAnalytics).all()
+
+        total_post_count = 0
+        online_count = 0
+        your_posts = 0
+
+        for user_data in user_analytics_data:
+
+            total_post_count += user_data.postCount
+
+            online_count += int(user_data.online)
+
+            if user_data.userID == userID:
+                your_posts += user_data.postCount 
+
+        session.close()
+
+        #  dictionary with the statistics
+        user_statistics = {
+            "postCount": total_post_count,
+            "yourPosts": your_posts,  
+            "online": online_count
+        }
+
+        return jsonify(user_statistics)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+''' Toggle Online '''
+@app.route("/api/toggle-online", methods=['PUT'])
+def toggleOnline():
+    try:
+        # Create a session
+        session = DB_SESSION()
+
+        # Get data from request
+        data = request.json
+        userID = data.get('userID')
+
+        # Find the user in the user_analytics table
+        user_analytics_data = session.query(UserAnalytics).get(userID)
+
+        if user_analytics_data:
+            # Toggle the "online" field
+            user_analytics_data.online = 1 if user_analytics_data.online == 0 else 0
+
+            # Commit the session to save the updated user analytics
+            session.commit()
+
+            session.close()
+
+            return jsonify({'message': 'Online status toggled successfully'})
+        else:
+            return jsonify({'error': 'User not found in user_analytics'}), 404
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080) # runs app in debug mode

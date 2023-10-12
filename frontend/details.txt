@@ -1,4 +1,0 @@
-- Login Page
-- Register Page
-- Enter Data Page
-- Showing all posts
