@@ -153,8 +153,20 @@ const Login = () => {
 
 
                     </div>
-
                 </div>
+                    <button
+                        style={{ 
+                            padding : "1rem",
+                            color : "white",
+                            position : "absolute", 
+                            bottom : "0px",
+                            border : "none",
+                            backgroundColor : "black",
+                            cursor : "Pointer"
+                        }}
+                        onClick={() => navigate("/register")}
+                        ><p>Registeration</p>
+                    </button>
             </div>
         </>
     )

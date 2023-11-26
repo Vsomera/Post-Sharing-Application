@@ -201,6 +201,19 @@ const Register = () => {
                     </div>
 
                 </div>
+                <button
+                        style={{ 
+                            padding : "1rem",
+                            color : "white",
+                            position : "absolute", 
+                            bottom : "0px",
+                            border : "none",
+                            backgroundColor : "black",
+                            cursor : "Pointer"
+                        }}
+                        onClick={() => navigate("/login")}
+                        ><p>Login</p>
+                    </button>
             </div>
         </>
     )

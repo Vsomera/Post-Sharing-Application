@@ -18,6 +18,13 @@ services:
     networks:
       - project_network
 
+  frontend:
+    build: /frontend/vite-project
+    ports: 
+      - '4173:4173'
+    networks:
+      - project_network
+
   mysql_db: 
     image: "mysql:latest"
     environment:
