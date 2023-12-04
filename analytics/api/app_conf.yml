@@ -2,6 +2,6 @@ version: 1
 datastore: 
   user: root 
   password:  Password123!
-  hostname: docker-microservices-mysql_db-1
+  hostname: post-sharing-application-mysql_db-1
   port: 3306
   db: analytics
