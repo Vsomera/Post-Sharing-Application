@@ -2,6 +2,6 @@ version: 1
 datastore: 
   user: root 
   password:  Password123!
-  hostname: post-sharing-application-mysql_db-1
+  hostname: ec2-34-208-48-5.us-west-2.compute.amazonaws.com
   port: 3306
   db: analytics

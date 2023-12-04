@@ -25,17 +25,17 @@ services:
     networks:
       - project_network
 
-  mysql_db: 
-    image: "mysql:latest"
-    environment:
-      MYSQL_ROOT_PASSWORD: Password123!
-    volumes:
-      - db-data:/foo
-      - ./scripts:/docker-entrypoint-initdb.d 
-    ports:
-      - "3306" # port forwards db on localhost:7070
-    networks:
-      - project_network
+  # mysql_db: 
+  #   image: "mysql:latest"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: Password123!
+  #   volumes:
+  #     - db-data:/foo
+  #     - ./scripts:/docker-entrypoint-initdb.d 
+  #   ports:
+  #     - "3306" # port forwards db on localhost:7070
+  #   networks:
+  #     - project_network
 
 # DATABASE TERMINAL ACCESS : mysql -u root -p -h localhost -P 7070
 
