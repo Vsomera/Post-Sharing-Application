@@ -1,7 +1,7 @@
 version: 1
 
 services:
-  image: "mysql:latest"
+  image: "mysql:5.7"
   environment:
     MYSQL_ROOT_PASSWORD: Password123!
   volumes:
@@ -9,3 +9,6 @@ services:
     - ../scripts:/docker-entrypoint-initdb.d 
   ports:
     - "3306"
+
+volumes:
+  db-data:
