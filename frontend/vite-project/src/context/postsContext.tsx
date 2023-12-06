@@ -36,7 +36,7 @@ interface Post {
       // Fetch posts from the API
       const fetchPosts = async () => {
         try {
-          const response = await fetch("http://localhost:8080/api/get-posts");
+          const response = await fetch(`${import.meta.env.VITE_ANALYTICS_URI}/api/get-posts`);
           if (response.ok) {
             const data = await response.json();
             setPosts(data);

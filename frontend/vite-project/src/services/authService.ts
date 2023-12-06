@@ -8,7 +8,7 @@ export const registerUser = async (username: string, email: string, password: st
             email,
             password
         }
-        const newUser = await axios.post('http://localhost:5050/api/users', userData)
+        const newUser = await axios.post(`${import.meta.env.VITE_AUTH_URI}/api/users`, userData)
         return newUser.status
     } catch (err) {
         return err
@@ -17,7 +17,7 @@ export const registerUser = async (username: string, email: string, password: st
 
 export const loginUser = async (email: string, password: string) => {
     try {
-        const verifyUser = await axios.post("http://localhost:5050/api/users/login", {
+        const verifyUser = await axios.post(`${import.meta.env.VITE_AUTH_URI}/api/users/login`, {
             email: email,
             password: password
         })
@@ -38,7 +38,7 @@ export const userInfo = async (accessToken: string) => {
             Authorization: `Bearer ${accessToken}`,
         },
     }
-    const userData = await axios.get("http://localhost:5050/api/users/", config) // returns user information
+    const userData = await axios.get(`${import.meta.env.VITE_AUTH_URI}/api/users/`, config) // returns user information
 
     return userData.data.user
 }
