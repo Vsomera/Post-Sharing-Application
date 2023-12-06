@@ -13,7 +13,7 @@ export const addPostDB = async (userToken: string, title: string, content: strin
             content
         }
 
-        const newPost = await axios.post('http://localhost:8080/api/add-post', reqData)
+        const newPost = await axios.post(`${import.meta.env.VITE_ANALYTICS_URI}/api/add-post`, reqData)
 
         if (newPost.status == 201) {
             return toast.success("New Post Added")
@@ -28,7 +28,7 @@ export const getAnalytics = async (userToken : string) => {
         const reqData = {
             userID : userToken
         }
-        const analytics = await axios.post('http://localhost:8080/api/user-statistics', reqData)
+        const analytics = await axios.post(`${import.meta.env.VITE_ANALYTICS_URI}/api/user-statistics`, reqData)
         return analytics
 
     } catch (err) {
